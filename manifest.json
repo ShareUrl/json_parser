@@ -1,0 +1,21 @@
+{
+   "browser_action": {
+      "default_icon": "icons/128.png",
+      "default_popup": "scripts/popup.html",
+      "default_title": "cookie eater"
+   },
+   "description": "show cookies with json style and set cookies",
+   "icons": {
+      "128": "icons/128.png",
+      "32": "icons/32.png"
+   },
+   "manifest_version": 2,
+   "name": "cookie eater",
+   "offline_enabled": true,
+   "permissions": [ "activeTab", "cookies", "tabs", "webNavigation", "http://*/*", "https://*/*" ],
+   "short_name": "cookies",
+   "version": "0.1",
+   "background": {
+      "page":"scripts/background.html"
+   }
+}
