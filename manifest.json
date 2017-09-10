@@ -16,6 +16,12 @@
    "short_name": "cookies",
    "version": "0.1",
    "background": {
-      "page":"scripts/background.html"
-   }
+      "scripts":["background.js"]
+   },
+   "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["myscript.js"]
+    }
+  ]
 }
