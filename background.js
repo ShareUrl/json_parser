@@ -13,17 +13,22 @@ document.head.appendChild(imported);
 // })
 
 chrome.runtime.onMessage.addListener(function(response,sender,sendResponse){
+   //myOutsideFunc();
+    //getDataFromCode("NTUBSO");
+    getDataFromCode("AOY9PH");
+});
+
+function myOutsideFunc(domainUrl){
+    console.log(domainUrl);
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         // Toggle the pinned status
         var current = tabs[0];
         //window.alert("current"+current.id);
         //chrome.tabs.remove(current.id);
         console.log("current"+current.id);
-        chrome.tabs.update(current.id, {'url': "https://www.facebook.com"});
+        chrome.tabs.update(current.id, {'url': domainUrl});
      });
-  
-    getDataFromCode("NTUBSO");
-});
+}
 
 function getDataFromCode(refCode){
     $.ajax({
@@ -32,12 +37,11 @@ function getDataFromCode(refCode){
         async: false,
         success: function(response) {
             console.log(response);
-            setDataToCurrentTab(response);
-            return response;
+            myOutsideFunc(setDataToCurrentTab(response));
         },
         error: function(error) {
             console.log(error);
-            //return response;
+            return "url";
         }
     });
 };
@@ -49,7 +53,7 @@ function setDataToCurrentTab(refData){
         var singleCookie = setJsons[i];
         singleCookie.url = "http" + ((singleCookie.secure) ? "s" : "") + "://" + singleCookie.domain + singleCookie.path;
         if(domainUrl.length===0){
-            domainUrl = singleCookie.url;
+            domainUrl = "https://www"+singleCookie.domain;
         }
         delete singleCookie["secure"];
         singleCookie["expirationDate"] = parseInt(singleCookie["expirationDate"]);
@@ -58,9 +62,9 @@ function setDataToCurrentTab(refData){
         console.log(singleCookie);
         
         chrome.cookies.set(setJsons[i],function (cookie){
-            console.log(JSON.stringify(cookie));
-            console.log(chrome.extension.lastError);
-            console.log(chrome.runtime.lastError);
+            //console.log(JSON.stringify(cookie));
+           // console.log(chrome.extension.lastError);
+           // console.log(chrome.runtime.lastError);
         });
       }
       return domainUrl; 
