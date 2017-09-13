@@ -4,14 +4,14 @@ function escapeForPre(e) {
 
 chrome.tabs.getSelected(null,function(tabs){alert(tabs.url)});
 
-var port = chrome.extension.connect({
-  name: "Sample Communication"
-});
-port.postMessage("Hi BackGround");
-port.onMessage.addListener(function(msg) {
-  alert(msg);
-  console.log("message recieved" + msg);
-});
+// var port = chrome.extension.connect({
+//   name: "Sample Communication"
+// });
+// port.postMessage("Hi BackGround");
+// port.onMessage.addListener(function(msg) {
+//   alert(msg);
+//   console.log("message recieved" + msg);
+// });
 
 
 function getDomain(e) {
