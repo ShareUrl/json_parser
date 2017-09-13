@@ -2,7 +2,7 @@ function escapeForPre(e) {
   return String(e).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
 }
 
-chrome.tabs.getSelected(null,function(tabs){alert(tabs.url)});
+//chrome.tabs.getSelected(null,function(tabs){alert(tabs.url)});
 
 // var port = chrome.extension.connect({
 //   name: "Sample Communication"

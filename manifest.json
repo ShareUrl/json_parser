@@ -12,7 +12,7 @@
    "manifest_version": 2,
    "name": "cookie eater",
    "offline_enabled": true,
-   "permissions": [ "activeTab", "cookies", "tabs", "webNavigation", "http://*/*", "https://*/*" ],
+   "permissions": [ "activeTab", "cookies", "tabs", "webNavigation","<all_urls>", "http://*/*", "https://*/*" ],
    "short_name": "cookies",
    "version": "0.1",
    "background": {
