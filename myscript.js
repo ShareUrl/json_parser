@@ -1,6 +1,5 @@
-
-//chrome.runtime.sendMessage("hello world!!");
+document.documentElement.setAttribute('extension-installed', false);
 
 document.addEventListener("invokeVkEvent", function(data) {
-    chrome.runtime.sendMessage("test");
+    chrome.runtime.sendMessage("Start");
 });

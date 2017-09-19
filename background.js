@@ -2,29 +2,22 @@ var imported = document.createElement('script');
 imported.src = 'jquery.js';
 document.head.appendChild(imported);
 
-// var localPort;
-// chrome.extension.onConnect.addListener(function(port) {
-//     console.log("Connected .....");
-//     port.onMessage.addListener(function(msg) {
-//          console.log("message recieved" + msg);
-//          port.postMessage("Hi Popup.js");
-//     });
-//     //localPort=port;
-// })
-
 chrome.runtime.onMessage.addListener(function(response,sender,sendResponse){
-   //myOutsideFunc();
-    //getDataFromCode("NTUBSO");
-    getDataFromCode("AOY9PH");
+    url = parseUrl(sender.url);
+    hashCode = url.pathname.split('/')[1];
+    getDataFromCode(hashCode);
 });
+
+function parseUrl(href) {
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
+};
 
 function myOutsideFunc(domainUrl){
     console.log(domainUrl);
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        // Toggle the pinned status
         var current = tabs[0];
-        //window.alert("current"+current.id);
-        //chrome.tabs.remove(current.id);
         console.log("current"+current.id);
         chrome.tabs.update(current.id, {'url': domainUrl});
      });
@@ -62,21 +55,10 @@ function setDataToCurrentTab(refData){
         console.log(singleCookie);
         
         chrome.cookies.set(setJsons[i],function (cookie){
-            //console.log(JSON.stringify(cookie));
-           // console.log(chrome.extension.lastError);
-           // console.log(chrome.runtime.lastError);
+            console.log(JSON.stringify(cookie));
+            console.log(chrome.extension.lastError);
+            console.log(chrome.runtime.lastError);
         });
       }
       return domainUrl; 
-};
-
-function reloadTabForMe() {
-    //working code
-    // chrome.tabs.getCurrent(function(tab) {
-    //     //window.alert("myTab"+tab);
-    //     console.log(tab);
-    // });
-    // chrome.tabs.create({
-    //     url: "https://www.facebook.com"
-    // });
 };
